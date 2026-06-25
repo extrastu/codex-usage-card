@@ -25,7 +25,8 @@ function CodexLogo() {
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
         aria-hidden="true"
       >
         <title>Codex (OpenAI)</title>
