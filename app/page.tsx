@@ -38,11 +38,20 @@ export default function Page() {
     longestStreak: 12,
   })
   const [saving, setSaving] = useState(false)
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const cardRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
 
   const update = (patch: Partial<CardData>) =>
     setData((d) => ({ ...d, ...patch }))
+
+  function handleTilt(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const px = (e.clientX - rect.left) / rect.width - 0.5
+    const py = (e.clientY - rect.top) / rect.height - 0.5
+    const max = 10
+    setTilt({ x: -py * max, y: px * max })
+  }
 
   function randomizeAll() {
     const token = Math.floor(50_000_000 + Math.random() * 4_950_000_000)
@@ -114,8 +123,21 @@ export default function Page() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_360px]">
           {/* Card + share */}
           <div className="flex flex-col items-center">
-            <div className="w-full max-w-[640px]">
-              <CodexCard ref={cardRef} data={data} />
+            <div
+              className="w-full max-w-[640px]"
+              style={{ perspective: "1000px" }}
+              onMouseMove={handleTilt}
+              onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+            >
+              <div
+                className="transition-transform duration-200 ease-out will-change-transform"
+                style={{
+                  transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                <CodexCard ref={cardRef} data={data} />
+              </div>
             </div>
 
             <div className="mt-8 flex items-start gap-6">
@@ -237,7 +259,7 @@ export default function Page() {
                 }
                 className="mt-1 h-10 rounded-xl bg-[#c06a3e] text-sm font-medium text-white transition hover:bg-[#a85a32]"
               >
-                随机连续天数 (1–30)
+                随机连续天数
               </button>
 
               <button
@@ -245,7 +267,7 @@ export default function Page() {
                 onClick={randomizeAll}
                 className="h-10 rounded-xl border border-[#c06a3e] text-sm font-medium text-[#c06a3e] transition hover:bg-[#c06a3e]/10"
               >
-                随机（保留用户名和头像）
+                随机
               </button>
             </div>
           </div>
