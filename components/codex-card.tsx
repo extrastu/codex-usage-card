@@ -24,7 +24,7 @@ function CodexLogo() {
         src="/codex-logo.png"
         alt="Codex"
         crossOrigin="anonymous"
-        className="size-7 object-contain"
+        className="size-10 object-contain"
       />
       <span className="text-2xl font-semibold tracking-tight">Codex</span>
     </div>
