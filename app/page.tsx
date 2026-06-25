@@ -343,22 +343,8 @@ export default function Page() {
 
               <button
                 type="button"
-                onClick={() => {
-                  const longestStreak = randomStreak()
-                  update({
-                    longestStreak,
-                    currentStreak: Math.floor(Math.random() * (longestStreak + 1)),
-                  })
-                }}
-                className="mt-1 h-11 touch-manipulation rounded-xl bg-[#c06a3e] text-sm font-medium text-white transition hover:bg-[#a85a32] active:scale-[0.99]"
-              >
-                {t.randomStreak}
-              </button>
-
-              <button
-                type="button"
                 onClick={randomizeAll}
-                className="h-11 touch-manipulation rounded-xl border border-[#c06a3e] text-sm font-medium text-[#c06a3e] transition hover:bg-[#c06a3e]/10 active:scale-[0.99]"
+                className="mt-1 h-11 touch-manipulation rounded-xl bg-[#c06a3e] text-sm font-medium text-white transition hover:bg-[#a85a32] active:scale-[0.99]"
               >
                 {t.random}
               </button>
