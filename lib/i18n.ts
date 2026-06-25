@@ -97,7 +97,7 @@ export const DICT: Record<Locale, Dict> = {
     cardCurrentStreak: "当前连续天数",
     cardLongestStreak: "最长连续使用...",
     shareText: (t) => `我在 Codex 累计使用了 ${t} tokens！`,
-    footerNote: "非官方粉丝作品，与 OpenAI 无关。",
+    footerNote: "非官方，粉丝作品，与 OpenAI 无关。",
     viewSource: "源码",
     followOnX: "在 X 上关注",
   },
