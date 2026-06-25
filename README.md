@@ -4,6 +4,10 @@ Generate and share a beautiful Codex activity card. Customize your username, ava
 
 > An unofficial fan-made project, not affiliated with OpenAI.
 
+## Preview
+<img width="1280" height="768" alt="extrastu-activity" src="https://github.com/user-attachments/assets/bdf8494d-db40-47d8-a9c0-2bf9e85d9904" />
+
+
 ## Features
 
 - **Activity heatmap** that regenerates based on the username + total tokens you enter
