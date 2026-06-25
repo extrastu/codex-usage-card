@@ -26,7 +26,7 @@ function Field({
 }
 
 const inputCls =
-  "h-10 rounded-xl border border-[#e5e2de] bg-white px-3 text-[#2a2722] outline-none transition focus:border-[#c06a3e] focus:ring-2 focus:ring-[#c06a3e]/20"
+  "h-11 rounded-xl border border-[#e5e2de] bg-white px-3 text-base text-[#2a2722] outline-none transition focus:border-[#c06a3e] focus:ring-2 focus:ring-[#c06a3e]/20"
 
 export default function Page() {
   const [data, setData] = useState<CardData>({
@@ -46,6 +46,12 @@ export default function Page() {
     setData((d) => ({ ...d, ...patch }))
 
   function handleTilt(e: React.MouseEvent<HTMLDivElement>) {
+    if (
+      typeof window !== "undefined" &&
+      !window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    ) {
+      return
+    }
     const rect = e.currentTarget.getBoundingClientRect()
     const px = (e.clientX - rect.left) / rect.width - 0.5
     const py = (e.clientY - rect.top) / rect.height - 0.5
@@ -116,13 +122,13 @@ export default function Page() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f2f1ef] px-4 py-10 md:py-14">
+    <main className="min-h-screen bg-[#f2f1ef] px-4 py-8 md:py-14">
       <div className="mx-auto max-w-5xl">
-        <h1 className="text-center text-3xl font-semibold text-[#2a2722] md:text-4xl">
+        <h1 className="text-center text-2xl font-semibold text-[#2a2722] sm:text-3xl md:text-4xl">
           分享你的活动
         </h1>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_360px]">
+        <div className="mt-7 grid gap-6 sm:mt-10 sm:gap-8 lg:grid-cols-[1fr_360px]">
           {/* Card + share */}
           <div className="flex flex-col items-center">
             <div
@@ -142,7 +148,7 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="mt-8 flex items-start gap-6">
+            <div className="mt-6 flex items-start justify-center gap-5 sm:mt-8 sm:gap-6">
               <ShareButton label="X" onClick={() => shareTo("x")}>
                 <svg viewBox="0 0 24 24" className="size-5" fill="currentColor" aria-hidden="true">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z" />
@@ -169,7 +175,7 @@ export default function Page() {
           </div>
 
           {/* Controls */}
-          <div className="rounded-2xl border border-[#e8e5e1] bg-white p-6">
+          <div className="rounded-2xl border border-[#e8e5e1] bg-white p-5 sm:p-6">
             <h2 className="text-lg font-semibold text-[#2a2722]">自定义卡片</h2>
             <div className="mt-5 flex flex-col gap-4">
               <Field label="头像">
@@ -189,7 +195,7 @@ export default function Page() {
                   <button
                     type="button"
                     onClick={() => fileRef.current?.click()}
-                    className="h-10 rounded-xl border border-[#e5e2de] bg-white px-4 text-sm font-medium text-[#6b6660] transition hover:bg-[#f7f6f4]"
+                    className="h-11 touch-manipulation rounded-xl border border-[#e5e2de] bg-white px-4 text-sm font-medium text-[#6b6660] transition hover:bg-[#f7f6f4] active:scale-[0.99]"
                   >
                     上传图片
                   </button>
@@ -259,7 +265,7 @@ export default function Page() {
                     longestStreak: randomStreak(),
                   })
                 }
-                className="mt-1 h-10 rounded-xl bg-[#c06a3e] text-sm font-medium text-white transition hover:bg-[#a85a32]"
+                className="mt-1 h-11 touch-manipulation rounded-xl bg-[#c06a3e] text-sm font-medium text-white transition hover:bg-[#a85a32] active:scale-[0.99]"
               >
                 随机连续天数
               </button>
@@ -267,7 +273,7 @@ export default function Page() {
               <button
                 type="button"
                 onClick={randomizeAll}
-                className="h-10 rounded-xl border border-[#c06a3e] text-sm font-medium text-[#c06a3e] transition hover:bg-[#c06a3e]/10"
+                className="h-11 touch-manipulation rounded-xl border border-[#c06a3e] text-sm font-medium text-[#c06a3e] transition hover:bg-[#c06a3e]/10 active:scale-[0.99]"
               >
                 随机
               </button>
@@ -297,7 +303,7 @@ function ShareButton({
         onClick={onClick}
         disabled={disabled}
         aria-label={label}
-        className="flex size-14 items-center justify-center rounded-full bg-[#2a2722] text-white transition hover:bg-[#3d3935] disabled:opacity-50"
+        className="flex size-12 touch-manipulation items-center justify-center rounded-full bg-[#2a2722] text-white transition hover:bg-[#3d3935] active:scale-95 disabled:opacity-50 sm:size-14"
       >
         {children}
       </button>
