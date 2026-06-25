@@ -1,9 +1,33 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { toBlob } from "html-to-image"
 import { CodexCard, type CardData } from "@/components/codex-card"
 import { randomStreak } from "@/lib/codex"
+
+const SAMPLE_USERNAMES = [
+  "extrastu",
+  "nightowl",
+  "pixelcat",
+  "devspark",
+  "lunaray",
+  "codewave",
+  "mossbyte",
+  "echovale",
+  "atlasdev",
+  "novadrift",
+]
+
+function randomStats(): Pick<
+  CardData,
+  "token" | "peakToken" | "currentStreak" | "longestStreak"
+> {
+  const token = Math.floor(50_000_000 + Math.random() * 4_950_000_000)
+  const peakToken = Math.floor(token * (0.04 + Math.random() * 0.12))
+  const longestStreak = randomStreak()
+  const currentStreak = Math.floor(Math.random() * (longestStreak + 1))
+  return { token, peakToken, currentStreak, longestStreak }
+}
 
 function parseNum(v: string): number {
   const n = Number(v.replace(/[^0-9.]/g, ""))
@@ -45,6 +69,13 @@ export default function Page() {
   const update = (patch: Partial<CardData>) =>
     setData((d) => ({ ...d, ...patch }))
 
+  // Regenerate fresh sample data on every visit (client-side to avoid hydration mismatch)
+  useEffect(() => {
+    const username =
+      SAMPLE_USERNAMES[Math.floor(Math.random() * SAMPLE_USERNAMES.length)]
+    setData((d) => ({ ...d, username, ...randomStats() }))
+  }, [])
+
   function handleTilt(e: React.MouseEvent<HTMLDivElement>) {
     if (
       typeof window !== "undefined" &&
@@ -60,18 +91,7 @@ export default function Page() {
   }
 
   function randomizeAll() {
-    const token = Math.floor(50_000_000 + Math.random() * 4_950_000_000)
-    const peakToken = Math.floor(
-      token * (0.04 + Math.random() * 0.12),
-    )
-    const longestStreak = randomStreak()
-    const currentStreak = Math.floor(Math.random() * (longestStreak + 1))
-    update({
-      token,
-      peakToken,
-      currentStreak,
-      longestStreak,
-    })
+    update(randomStats())
   }
 
   function handleAvatar(e: React.ChangeEvent<HTMLInputElement>) {
