@@ -31,6 +31,7 @@ const inputCls =
 export default function Page() {
   const [data, setData] = useState<CardData>({
     username: "extrastu",
+    avatar: "",
     token: 1_300_000_000,
     peakToken: 110_000_000,
     currentStreak: 0,
@@ -38,9 +39,18 @@ export default function Page() {
   })
   const [saving, setSaving] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
+  const fileRef = useRef<HTMLInputElement>(null)
 
   const update = (patch: Partial<CardData>) =>
     setData((d) => ({ ...d, ...patch }))
+
+  function handleAvatar(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = () => update({ avatar: String(reader.result) })
+    reader.readAsDataURL(file)
+  }
 
   async function renderBlob(): Promise<Blob | null> {
     if (!cardRef.current) return null
@@ -127,6 +137,38 @@ export default function Page() {
           <div className="rounded-2xl border border-[#e8e5e1] bg-white p-6">
             <h2 className="text-lg font-semibold text-[#2a2722]">自定义卡片</h2>
             <div className="mt-5 flex flex-col gap-4">
+              <Field label="头像">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={data.avatar || "/avatar.png"}
+                    alt="头像预览"
+                    className="size-12 rounded-full object-cover"
+                  />
+                  <input
+                    ref={fileRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleAvatar}
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => fileRef.current?.click()}
+                    className="h-10 rounded-xl border border-[#e5e2de] bg-white px-4 text-sm font-medium text-[#6b6660] transition hover:bg-[#f7f6f4]"
+                  >
+                    上传图片
+                  </button>
+                  {data.avatar ? (
+                    <button
+                      type="button"
+                      onClick={() => update({ avatar: "" })}
+                      className="text-sm text-[#a39d95] transition hover:text-[#6b6660]"
+                    >
+                      移除
+                    </button>
+                  ) : null}
+                </div>
+              </Field>
               <Field label="用户名">
                 <input
                   className={inputCls}

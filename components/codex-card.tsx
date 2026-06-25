@@ -10,6 +10,7 @@ import {
 
 export type CardData = {
   username: string
+  avatar: string
   token: number
   peakToken: number
   currentStreak: number
@@ -63,7 +64,7 @@ export const CodexCard = forwardRef<HTMLDivElement, { data: CardData }>(
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
             <img
-              src="/avatar.png"
+              src={data.avatar || "/avatar.png"}
               alt={`${data.username} 头像`}
               crossOrigin="anonymous"
               className="size-14 rounded-full object-cover"
