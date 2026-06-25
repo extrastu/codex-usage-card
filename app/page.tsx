@@ -44,6 +44,19 @@ export default function Page() {
   const update = (patch: Partial<CardData>) =>
     setData((d) => ({ ...d, ...patch }))
 
+  function randomizeAll() {
+    const token = Math.floor(50_000_000 + Math.random() * 4_950_000_000)
+    const peakToken = Math.floor(
+      token * (0.04 + Math.random() * 0.12),
+    )
+    update({
+      token,
+      peakToken,
+      currentStreak: randomStreak(),
+      longestStreak: randomStreak(),
+    })
+  }
+
   function handleAvatar(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file) return
@@ -225,6 +238,14 @@ export default function Page() {
                 className="mt-1 h-10 rounded-xl bg-[#c06a3e] text-sm font-medium text-white transition hover:bg-[#a85a32]"
               >
                 随机连续天数 (1–30)
+              </button>
+
+              <button
+                type="button"
+                onClick={randomizeAll}
+                className="h-10 rounded-xl border border-[#c06a3e] text-sm font-medium text-[#c06a3e] transition hover:bg-[#c06a3e]/10"
+              >
+                随机（保留用户名和头像）
               </button>
             </div>
           </div>
