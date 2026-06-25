@@ -14,7 +14,7 @@ const siteDescription =
   '一键生成并分享你的 Codex 使用活动卡片：自定义用户名、头像、累计 Token、峰值日和连续使用天数，导出精美图片分享到 X、LinkedIn 和 Reddit。'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://codex-activity-card.vercel.app'),
+  metadataBase: new URL('https://usecodex.vercel.app'),
   title: {
     default: siteTitle,
     template: '%s | Codex 活动卡片',
