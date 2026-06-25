@@ -43,6 +43,9 @@ type Dict = {
   cardCurrentStreak: string
   cardLongestStreak: string
   shareText: (tokens: string) => string
+  footerNote: string
+  viewSource: string
+  followOnX: string
 }
 
 export const DICT: Record<Locale, Dict> = {
@@ -68,6 +71,9 @@ export const DICT: Record<Locale, Dict> = {
     cardCurrentStreak: "Current Streak",
     cardLongestStreak: "Longest Streak",
     shareText: (t) => `I've used ${t} tokens on Codex!`,
+    footerNote: "Unofficial, fan-made, not affiliated with OpenAI.",
+    viewSource: "Source",
+    followOnX: "Follow on X",
   },
   zh: {
     pageTitle: "分享你的活动",
@@ -91,6 +97,9 @@ export const DICT: Record<Locale, Dict> = {
     cardCurrentStreak: "当前连续天数",
     cardLongestStreak: "最长连续使用...",
     shareText: (t) => `我在 Codex 累计使用了 ${t} tokens！`,
+    footerNote: "非官方，粉丝作品，与 OpenAI 无关。",
+    viewSource: "源码",
+    followOnX: "在 X 上关注",
   },
   ja: {
     pageTitle: "アクティビティを共有",
@@ -114,6 +123,9 @@ export const DICT: Record<Locale, Dict> = {
     cardCurrentStreak: "現在の連続日数",
     cardLongestStreak: "最長連続日数",
     shareText: (t) => `Codex で ${t} トークン使いました！`,
+    footerNote: "非公式、ファン制作、OpenAI とは無関係です。",
+    viewSource: "ソース",
+    followOnX: "X でフォロー",
   },
 }
 

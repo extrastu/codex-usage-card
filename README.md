@@ -1,16 +1,28 @@
-# codex-usage-card
+# Codex Usage Card
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Generate and share a beautiful Codex activity card. Customize your username, avatar, total tokens, peak-day tokens, and streaks, then export the card as an image or share it directly to social platforms.
 
-## Built with v0
+> An unofficial fan-made project, not affiliated with OpenAI.
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+## Features
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_Sf8LaIMa5C0OZfIrk0xnZQn6TcDG)
+- **Activity heatmap** that regenerates based on the username + total tokens you enter
+- **Editable stats** — total tokens, peak-day tokens, current streak, and longest streak
+- **Custom avatar** upload, with a default fallback
+- **Multi-language UI** — English, 中文, and 日本語, auto-detected from the browser language
+- **Copy to clipboard** or **save as PNG** (built with `html-to-image`)
+- **Share** to X, LinkedIn, and Reddit
+- **3D tilt** hover effect on pointer devices and a touch-optimized mobile (H5) layout
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org) (App Router) + React
+- Tailwind CSS
+- [`html-to-image`](https://github.com/bubkoo/html-to-image) for image export
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
@@ -20,14 +32,15 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the result. Edit `app/page.tsx` to start customizing — the page auto-updates as you edit.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Links
 
-## Learn More
+- Source: [github.com/extrastu/codex-usage-card](https://github.com/extrastu/codex-usage-card)
+- Author on X: [@iextrastu](https://x.com/iextrastu)
 
-To learn more, take a look at the following resources:
+## Built with v0
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+This repository is linked to a [v0](https://v0.app) project. Start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` automatically deploys.
+
+[Continue working on v0 →](https://v0.app/chat/projects/prj_Sf8LaIMa5C0OZfIrk0xnZQn6TcDG)
