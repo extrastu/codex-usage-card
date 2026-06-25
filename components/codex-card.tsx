@@ -1,12 +1,8 @@
 "use client"
 
 import { forwardRef, useMemo } from "react"
-import {
-  GRID_COLS,
-  HEATMAP_COLORS,
-  formatCn,
-  generateHeatmap,
-} from "@/lib/codex"
+import { GRID_COLS, HEATMAP_COLORS, generateHeatmap } from "@/lib/codex"
+import { DICT, type Locale, formatDays, formatNumber } from "@/lib/i18n"
 
 export type CardData = {
   username: string
@@ -40,12 +36,15 @@ function Stat({ value, label }: { value: string; label: string }) {
   )
 }
 
-export const CodexCard = forwardRef<HTMLDivElement, { data: CardData }>(
-  function CodexCard({ data }, ref) {
-    const cells = useMemo(
-      () => generateHeatmap(data.username || "user", data.token),
-      [data.username, data.token],
-    )
+export const CodexCard = forwardRef<
+  HTMLDivElement,
+  { data: CardData; locale: Locale }
+>(function CodexCard({ data, locale }, ref) {
+  const t = DICT[locale]
+  const cells = useMemo(
+    () => generateHeatmap(data.username || "user", data.token),
+    [data.username, data.token],
+  )
 
     return (
       <div
@@ -57,7 +56,7 @@ export const CodexCard = forwardRef<HTMLDivElement, { data: CardData }>(
           <div className="flex min-w-0 items-center gap-3 sm:gap-3.5">
             <img
               src={data.avatar || "/avatar.png"}
-              alt={`${data.username} 头像`}
+              alt={`${data.username} ${t.avatar}`}
               crossOrigin="anonymous"
               className="size-11 shrink-0 rounded-full object-cover sm:size-14"
             />
@@ -89,13 +88,13 @@ export const CodexCard = forwardRef<HTMLDivElement, { data: CardData }>(
 
         {/* Stats */}
         <div className="mt-5 flex items-stretch sm:mt-7">
-          <Stat value={formatCn(data.token)} label="累计 Token" />
+          <Stat value={formatNumber(data.token, locale)} label={t.cardTotalToken} />
           <div className="w-px self-stretch bg-[#ededea]" />
-          <Stat value={formatCn(data.peakToken)} label="峰值日" />
+          <Stat value={formatNumber(data.peakToken, locale)} label={t.cardPeakDay} />
           <div className="w-px self-stretch bg-[#ededea]" />
-          <Stat value={`${data.currentStreak} 天`} label="当前连续天数" />
+          <Stat value={formatDays(data.currentStreak, locale)} label={t.cardCurrentStreak} />
           <div className="w-px self-stretch bg-[#ededea]" />
-          <Stat value={`${data.longestStreak} 天`} label="最长连续使用..." />
+          <Stat value={formatDays(data.longestStreak, locale)} label={t.cardLongestStreak} />
         </div>
       </div>
     )
