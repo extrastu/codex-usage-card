@@ -9,35 +9,57 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+const siteTitle = 'Codex 活动卡片生成器'
+const siteDescription =
+  '一键生成并分享你的 Codex 使用活动卡片：自定义用户名、头像、累计 Token、峰值日和连续使用天数，导出精美图片分享到 X、LinkedIn 和 Reddit。'
+
 export const metadata: Metadata = {
-  title: 'Codex 活动卡片生成器',
-  description: '生成并分享你的 Codex 使用活动卡片',
+  metadataBase: new URL('https://codex-activity-card.vercel.app'),
+  title: {
+    default: siteTitle,
+    template: '%s | Codex 活动卡片',
+  },
+  description: siteDescription,
+  applicationName: siteTitle,
+  keywords: [
+    'Codex',
+    'OpenAI Codex',
+    '活动卡片',
+    'Token 用量',
+    '热力图',
+    '分享卡片',
+    'activity card',
+    'contribution graph',
+  ],
+  authors: [{ name: 'Codex 活动卡片' }],
   generator: 'v0.app',
+  openGraph: {
+    type: 'website',
+    locale: 'zh_CN',
+    title: siteTitle,
+    description: siteDescription,
+    siteName: siteTitle,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
   },
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'light',
+  themeColor: '#f2f1ef',
 }
 
 export default function RootLayout({
