@@ -20,13 +20,11 @@ function CodexLogo() {
   return (
     <div className="flex items-center gap-2 text-[#5f5b57]">
       <svg
-        width="30"
-        height="30"
+        width="28"
+        height="28"
         viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
+        fill="currentColor"
+        fillRule="evenodd"
         aria-hidden="true"
       >
         <title>Codex (OpenAI)</title>
