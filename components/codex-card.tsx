@@ -30,8 +30,19 @@ function CodexLogo() {
           strokeLinejoin="round"
         />
         <path
-          d="M7.282 8.307a.848.848 0 00-1.473.842l1.694 2.965-1.688 2.848a.849.849 0 001.46.864l1.94-3.272a.849.849 0 00.007-.854l-1.94-3.393zM12.728 14.547a.849.849 0 000 1.695h4.848a.849.849 0 000-1.696h-4.848z"
-          fill="currentColor"
+          d="M7.6 9.2 11 12l-3.4 2.8"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12.8 15h4.2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
         />
       </svg>
       <span className="text-2xl font-semibold tracking-tight">Codex</span>
