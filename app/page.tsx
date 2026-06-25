@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
-import html2canvas from "html2canvas"
+import { toBlob } from "html-to-image"
 import { CodexCard, type CardData } from "@/components/codex-card"
 import { randomStreak } from "@/lib/codex"
 
@@ -54,12 +54,10 @@ export default function Page() {
 
   async function renderBlob(): Promise<Blob | null> {
     if (!cardRef.current) return null
-    const canvas = await html2canvas(cardRef.current, {
-      backgroundColor: null,
-      scale: 2,
-      useCORS: true,
+    return toBlob(cardRef.current, {
+      pixelRatio: 2,
+      cacheBust: true,
     })
-    return new Promise((resolve) => canvas.toBlob(resolve, "image/png"))
   }
 
   async function handleSave() {
