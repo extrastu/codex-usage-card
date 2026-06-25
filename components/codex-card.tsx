@@ -50,7 +50,7 @@ export const CodexCard = forwardRef<HTMLDivElement, { data: CardData }>(
     return (
       <div
         ref={ref}
-        className="w-full rounded-[28px] bg-white p-7 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)] md:p-8"
+        className="w-full rounded-[28px] bg-[#f9f9f7] p-7 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)] md:p-8"
       >
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
