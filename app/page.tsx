@@ -58,11 +58,13 @@ export default function Page() {
     const peakToken = Math.floor(
       token * (0.04 + Math.random() * 0.12),
     )
+    const longestStreak = randomStreak()
+    const currentStreak = Math.floor(Math.random() * (longestStreak + 1))
     update({
       token,
       peakToken,
-      currentStreak: randomStreak(),
-      longestStreak: randomStreak(),
+      currentStreak,
+      longestStreak,
     })
   }
 
